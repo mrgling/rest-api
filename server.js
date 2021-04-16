@@ -15,7 +15,8 @@ app.get('/api/v1/:id',(req, res) => {
 })
 
 app.post('/api/v1',(req, res) => {
-    req.body
+    req.body.first
+    res.json(req.body.first)
 })
 
 app.listen(port, () => console.log(`Server is running on http://localhost:${port}`))
