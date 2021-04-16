@@ -37,9 +37,11 @@ app.get('/api/v1/:id',(req, res) => {
         return fishes.id == id
     })
 
-    console.log(foundFish)
+    if(!foundFish) {
+        res.json({"error": "Detta id finns ej."})
+    }
 
-    res.json(true)    
+    res.json(foundFish)    
 })
 
 app.post('/api/v1',(req, res) => {
