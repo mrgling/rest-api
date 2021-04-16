@@ -3,15 +3,43 @@ const port = 3000;
 
 const app = express();
 
+const fishes = [
+    {
+        id: 1,
+        size: "small",
+        color: "blue",
+        price: "200"
+    },
+    {
+        id: 2,
+        size: "medium",
+        color: "green",
+        price: "400"
+    },
+    {
+        id: 3,
+        size: "large",
+        color: "red",
+        price: "800"
+    }
+]
+
 app.use(express.json())
 
 app.get('/api/v1',(req, res) => {
-    res.json("Mitt REST-API V1.0")    
+    res.json(fishes)    
 })
 
 app.get('/api/v1/:id',(req, res) => {
-    req.params.id
-    res.json("GET: " + req.params.id)    
+    const id = req.params.id
+
+    const foundFish = fishes.find((fishes) => {
+        return fishes.id == id
+    })
+
+    console.log(foundFish)
+
+    res.json(true)    
 })
 
 app.post('/api/v1',(req, res) => {
