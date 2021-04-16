@@ -14,3 +14,28 @@ Content-Type: application/json
     "color": "yellow",
     "price": "1000"
 }
+
+###
+PUT http://localhost:3000/api/v1
+Content-Type: application/json
+
+{
+    "id": 1,
+    "size": "mini",
+    "color": "lightblue",
+    "price": "100"
+}
+
+###
+
+DELETE http://localhost:3000/api/v1
+Content-Type: application/json
+
+{
+    "id": 3,
+    "size": "large",
+    "color": "red",
+    "price": "800"
+}
+
+###

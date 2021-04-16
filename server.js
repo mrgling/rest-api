@@ -69,4 +69,8 @@ app.post('/api/v1',(req, res) => {
     })
 })
 
+app.push('/api/v1',(req, res) => {
+    res.json(fish)    
+})
+
 app.listen(port, () => console.log(`Server is running on http://localhost:${port}`))
