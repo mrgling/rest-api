@@ -3,6 +3,7 @@
 ## Ett enkelt REST-API med 4 endpoints (GET, POST, PUT, DELETE)
 
 Inget gränssnitt finns, testas med VSC-tillägget Rest Client.
+Resursen består av akvariefiskar med id, storlek, färg och pris.
 
 Krav för godkänt:  
 1. Projektet innehåller minst 4 st. endpoints (GET, POST, PUT & DELETE för en resurs)  
