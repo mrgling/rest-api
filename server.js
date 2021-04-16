@@ -3,7 +3,7 @@ const port = 3000;
 
 const app = express();
 
-const fishes = [
+const fish = [
     {
         id: 1,
         size: "small",
@@ -27,14 +27,14 @@ const fishes = [
 app.use(express.json())
 
 app.get('/api/v1',(req, res) => {
-    res.json(fishes)    
+    res.json(fish)    
 })
 
 app.get('/api/v1/:id',(req, res) => {
     const id = req.params.id
 
-    const foundFish = fishes.find((fishes) => {
-        return fishes.id == id
+    const foundFish = fish.find((fish) => {
+        return fish.id == id
     })
 
     if(!foundFish) {
@@ -45,8 +45,28 @@ app.get('/api/v1/:id',(req, res) => {
 })
 
 app.post('/api/v1',(req, res) => {
-    req.body.first
-    res.json(req.body.first)
+    const newSize = req.body.size
+    const newColor = req.body.color
+    const newPrice = req.body.price
+
+    let newId = 0;
+    fish.forEach((fish) => {
+        if(fish.id > newId) {
+            newId = fish.id
+        }
+    })
+    newId++
+
+    fish.push({
+        id: newId,
+        size: newSize,
+        color: newColor,
+        price: newPrice
+    })
+
+    res.json({
+        status: "New fish created"
+    })
 })
 
 app.listen(port, () => console.log(`Server is running on http://localhost:${port}`))
