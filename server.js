@@ -2,7 +2,10 @@ const express = require('express');
 const port = 3000;
 const app = express();
 
-app.get('/',(req, res, next) => {
+app.use(express.json())
+
+app.get('/api/v1',(req, res) => {
+    res.json("Mitt REST-API V1")
     
 })
 
