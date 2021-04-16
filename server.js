@@ -26,32 +26,32 @@ const fish = [
 
 app.use(express.json())
 
-app.get('/api/v1',(req, res) => {
-    res.json(fish)    
+app.get('/api/v1', (req, res) => {
+    res.json(fish)
 })
 
-app.get('/api/v1/:id',(req, res) => {
+app.get('/api/v1/:id', (req, res) => {
     const id = req.params.id
 
     const foundFish = fish.find((fish) => {
         return fish.id == id
     })
 
-    if(!foundFish) {
-        res.json({"error": "Detta id finns ej."})
+    if (!foundFish) {
+        res.json({ "error": "Detta id finns ej." })
     }
 
-    res.json(foundFish)    
+    res.json(foundFish)
 })
 
-app.post('/api/v1',(req, res) => {
+app.post('/api/v1', (req, res) => {
     const newSize = req.body.size
     const newColor = req.body.color
     const newPrice = req.body.price
 
     let newId = 0;
     fish.forEach((fish) => {
-        if(fish.id > newId) {
+        if (fish.id > newId) {
             newId = fish.id
         }
     })
@@ -69,8 +69,26 @@ app.post('/api/v1',(req, res) => {
     })
 })
 
-app.push('/api/v1',(req, res) => {
-    res.json(fish)    
+app.put('/api/v1/:id', (req, res) => {
+    const fishIndex = fish.findIndex((f) => f.id == req.params.id)
+
+    fish[fishIndex].size = req.body.size
+    fish[fishIndex].color = req.body.color
+    fish[fishIndex].price = req.body.price
+
+    res.json({
+        status: "Fish updated"
+    })
+})
+
+app.delete('/api/v1/:id', (req, res) => {
+    const fishIndex = fish.findIndex((f) => f.id == req.params.id)
+
+    fish.splice(fishIndex, 1)
+
+    res.json({
+        status: "Fish deleted"
+    })
 })
 
 app.listen(port, () => console.log(`Server is running on http://localhost:${port}`))
